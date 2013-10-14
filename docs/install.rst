@@ -1,4 +1,7 @@
-Install
-=========
+Installation
+============
 
-This is where you write how to get a new laptop to run this project.
+In a virtualenv, install this package and its dependencies::
+
+    (venv)$ pip install git+git://github.com/dupuy/ulm.git
+

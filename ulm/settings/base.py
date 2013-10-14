@@ -19,12 +19,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ulm',
-        'USER': 'postgres',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': root('ulm.db'),
+        'USER': '',
         'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -36,17 +36,17 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'Europe/London'
+TIME_ZONE = 'Europe/Berlin'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-gb'
+LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = False
+USE_I18N = True
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
@@ -86,13 +86,16 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'CHANGE THIS!!!'
+SECRET_KEY = 'SET THIS IN local.py, NOT HERE!!!'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+)
+
+CLICKJACK_CLASSES = (
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,8 +104,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+) + CLICKJACK_CLASSES
 
 ROOT_URLCONF = 'ulm.urls'
 
@@ -130,27 +132,29 @@ INSTALLED_APPS += PROJECT_APPS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
+# the site admins on every HTTP 500 error if you uncomment the
+# handlers entry in loggers (if you uncomment the filters parts
+# for Django 1.4 or later, logging only happens if DEBUG is False).
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
+    # 'filters': {
+    #    'require_debug_false': {
+    #        '()': 'django.utils.log.RequireDebugFalse'
+    #    }
+    # },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'filters': ['require_debug_false'],
+    #         'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
+    #         'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -168,6 +172,6 @@ except ImportError:
     pass
 
 
-# importing test settings file if necessary (TODO chould be done better)
+# importing test settings file if necessary (TODO should be done better)
 if len(sys.argv) > 1 and 'test' in sys.argv[1]:
     from .testing import *

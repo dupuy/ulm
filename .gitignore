@@ -1,3 +1,5 @@
+# Ignore SQLite3 database files
+*.db
 # Ignore compiled Python files
 *.pyc
 *.pyo

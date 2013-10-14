@@ -7,27 +7,5 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ulm',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-
-
-# You might want to use sqlite3 for testing in local as it's much faster.
-if len(sys.argv) > 1 and 'test' in sys.argv[1]:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/tmp/ulm_test.db',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '',
-        }
-    }
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '3!5!p&g5^nmr$7a8q4l_3-+5kwsno=c7eenv550s01$f&@&yhe'

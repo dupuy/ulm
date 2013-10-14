@@ -1,0 +1,3 @@
+Alexander Dupuy (https://github.com/dupuy/ulm)
+Marco Fucci (https://github.com/marcofucci/cookiecutter-simple-django)
+Daniel Greenfeld (https://github.com/pydanny/cookiecutter-django)

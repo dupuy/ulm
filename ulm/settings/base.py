@@ -1,11 +1,13 @@
+"""Base Django settings for ulm"""
 import sys
 from os.path import join, abspath, dirname
 
 # PATH vars
 
-here = lambda *x: join(abspath(dirname(__file__)), *x)
+# pylint: disable=C0103,W0142
+here = lambda *x: join(abspath(dirname(__file__)), *x)  # noqa
 PROJECT_ROOT = here("..")
-root = lambda *x: join(abspath(PROJECT_ROOT), *x)
+root = lambda *x: join(abspath(PROJECT_ROOT), *x)  # noqa
 
 sys.path.insert(0, root('apps'))
 
@@ -21,10 +23,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': root('ulm.db'),
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
     }
 }
 
@@ -95,7 +93,7 @@ TEMPLATE_LOADERS = (
 )
 
 CLICKJACK_CLASSES = (
-#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -148,13 +146,13 @@ LOGGING = {
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-    #         'filters': ['require_debug_false'],
+            # 'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },
     'loggers': {
         'django.request': {
-    #         'handlers': ['mail_admins'],
+            # 'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
         },
@@ -167,11 +165,11 @@ LOGGING = {
 
 # .local.py overrides all the common settings.
 try:
-    from .local import *
+    from .local import *                # noqa pylint: disable=W0401
 except ImportError:
     pass
 
 
-# importing test settings file if necessary (TODO should be done better)
+# importing test settings file if necessary
 if len(sys.argv) > 1 and 'test' in sys.argv[1]:
-    from .testing import *
+    from .testing import *              # noqa pylint: disable=W0401

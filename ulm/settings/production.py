@@ -1,4 +1,5 @@
-from .base import *
+# pylint: disable=W0401,W0614,C0111
+from .base import *                     # noqa
 
 
 DEBUG = True
@@ -17,8 +18,9 @@ DATABASES = {
         'NAME': 'ulm',
         'USER': 'postgres',
         'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
+        'HOST': '',        # Empty for local domain sockets
+                           # or '127.0.0.1' for localhost through TCP.
+        'PORT': '',        # Set to empty string for default.
     }
 }
 
@@ -30,5 +32,4 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'Europe/Berlin'
-
+TIME_ZONE = 'UTC'

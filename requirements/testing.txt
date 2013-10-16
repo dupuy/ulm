@@ -1,4 +1,8 @@
 -r base.txt
 
-mock
-python-dbusmock
+# uncomment whichever test framework you prefer, nose or py.test
+nose>=1.1
+#pytest>=2.3.3
+
+mock>=0.7
+python-dbusmock>=0.7

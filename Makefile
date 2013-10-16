@@ -30,10 +30,10 @@ devinit:
 	@echo "Installing full dependencies for development and testing"
 	pip install -r requirements/local.txt
 
-mininit: min-required.txt
+mininit: reqminvers.txt
 	@[ -n "$$VIRTUAL_ENV" ] || { echo "No virtualenv!"; exit 1; }
 	@echo "Installing minimum versions of dependencies"
-	pip install -r min-required.txt
+	pip install -r reqminvers.txt
 
 check:
 	-flake8 $(SRC_DIR)
@@ -63,7 +63,7 @@ clean:
 
 # Perform forced build using -W for the (.PHONY) requirements target
 requirements:
-	$(MAKE) -W $(REQFILE) min-required.txt requirements.txt
+	$(MAKE) -W $(REQFILE) reqminvers.txt requirements.txt
 
 REQS=.reqs
 REQFILE=requirements/production.txt
@@ -91,7 +91,7 @@ requirements.txt: $(REQFILE) requirements/base.txt # by inclusion
 	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') > $@ ;;	\
 	 esac; 
 
-min-required.txt: requirements/*.txt
+reqminvers.txt: requirements/*.txt
 	@if grep -q '>[0-9]' $^; then				\
 	   echo "Use '>=' not '>' for requirements"; exit 1;	\
 	 fi

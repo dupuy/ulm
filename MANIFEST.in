@@ -1,0 +1,9 @@
+include README.rst intro.rst overview.rst LICENSE CONTRIBUTORS.txt
+include Makefile manage.py pylint
+include requirements.txt reqminvers.txt
+recursive-include requirements *.txt
+recursive-include docs *
+recursive-exclude docs/_static .gitignore
+recursive-include ulm/assets *
+recursive-include ulm/settings *
+recursive-include ulm/templates *

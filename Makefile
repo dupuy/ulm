@@ -36,8 +36,8 @@ mininit: reqminvers.txt
 	pip install -r reqminvers.txt
 
 check:
-	-flake8 $(SRC_DIR)
-	pylint --rcfile=pylint $(SRC_DIR)
+	-flake8 $(SRC_DIR) *.py
+	pylint --rcfile=pylint $(SRC_DIR) *.py
 
 test:
 	@TESTER=`which py.test nosetests | sed 1q`;			\

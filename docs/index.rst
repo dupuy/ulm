@@ -6,10 +6,10 @@ Contents:
    :maxdepth: 2
 
    install
+   screenshot
    deploy
    tests
    code
-
 
 Indices and tables
 ------------------

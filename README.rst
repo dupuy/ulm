@@ -63,6 +63,7 @@ You can also clone the Git repository and run it from the source directory::
 
 For anything more than that, you will want to run it under a real webserver
 as described below in the Deployment section.
+
 Deployment
 ==========
 

@@ -1,3 +1,7 @@
 Alexander Dupuy (https://github.com/dupuy/ulm)
+
+Thanks for inspiration etc. to:
+
 Marco Fucci (https://github.com/marcofucci/cookiecutter-simple-django)
 Daniel Greenfeld (https://github.com/pydanny/cookiecutter-django)
+Red Hat (http://cgit.freedesktop.org/NetworkManager/NetworkManager/tree/examples/python/dbus/show-bssids.py)

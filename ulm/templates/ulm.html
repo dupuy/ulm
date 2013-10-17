@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <meta name="viewport" content="{% block viewport %}width=device-width"{% endblock %}>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="refresh" content="{{refresh}}">
+
+    <title>{% block title %}Laptop Monitoring {{item}} {% endblock title %}</title>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- <link rel="icon" type="image/gif" href="img/favicon.gif"> -->
+
+    {% block css %}
+    <link href="css/styles.css" rel="stylesheet">
+    {% endblock %}
+
+  </head>
+
+  <body>
+    <div class="container">
+
+      {% block content %}
+        <h3>{{timestamp}}</h3>
+	{% if not item %}
+	  <p><a href='batteries/'>Battery status:</a></p>
+	{% endif %}
+        {% if batteries %}
+	  <table>
+	    <tr>
+              <th>Name</th>
+              <th>Charge</th>
+              <th>State</th>
+              <th>Remaining</th>
+              <th>Status age</th>
+            </tr>
+            {% for bat in batteries %}
+	      <tr>
+                <th>{{bat.name}}</th>
+                <th>{{bat.percentage}}%</th>
+                <th>{{bat.state}}</th>
+                <th>{{bat.remaining}}</th>
+                <th>{{bat.age}} ago</th>
+              </tr>
+            {% endfor %}
+	  </table>
+        {% endif %}
+	{% if not item %}
+	  <p><a href='wifi/'>Wifi status:</a></p>
+	{% endif %}
+        {% if wifi %}
+	  <table>
+	    <tr>
+              <th>SSID</th>
+              <th>BSSID (MAC)</th>
+              <th>Signal</th>
+              <th>On</th>
+            </tr>
+            {% for ap in wifi %}
+	      <tr>
+                <th>{{ap.ssid}}</th>
+                <th>{{ap.bssid}}</th>
+                <th>{{ap.signal}}%</th>
+                <th>{{ap.device}}</th>
+              </tr>
+            {% endfor %}
+	  </table>
+        {% endif %}
+      {% endblock content %}
+
+    </div> <!-- /container -->
+  </body>
+</html>

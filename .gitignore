@@ -1,7 +1,13 @@
 # Ignore SQLite3 database files
 *.db
+
 # Ignore compiled Python files
-*.pyc
-*.pyo
+*.py[cod]
+
 # Ignore backup files
 *~
+
+# Ignore temporary build directories for Sphinx and pip
+build
+_build
+.reqs

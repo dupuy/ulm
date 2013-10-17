@@ -79,7 +79,6 @@ class Battery(object):
 
         String: one of Unknown, Charging, Discharging, Empty, Fully charged,
         Pending charge, Pending discharge
-        
 
         """
         return self._state

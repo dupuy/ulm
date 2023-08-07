@@ -1,4 +1,7 @@
-Django==1.5.4
-gunicorn==18.0
-psycopg2==2.5.1
-South==0.8.2
+Django==1.11.29
+South==1.0.2
+dbus-python==1.2.18
+django-model-utils==3.1.2
+gunicorn==19.10.0
+psycopg2==2.8.6
+pytz==2023.3

@@ -69,31 +69,19 @@ REQS=.reqs
 REQFILE=requirements/production.txt
 
 requirements.txt: $(REQFILE) requirements/base.txt # by inclusion
+	@# Due to TLS 1.0 and 1.1 deprecation, pip 20 is required;
+	@# see ttps://stackoverflow.com/questions/49768770 and/or run
+	@# curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | sudo python2
 	@set -e;							\
-	 case `pip --version` in					\
-	   "pip 0"*|"pip 1".[012]*)					\
-	     virtualenv --no-site-packages --clear $(REQS);		\
-	     . $(REQS)/bin/activate;					\
-	     echo starting clean install of requirements from PyPI;	\
-	     pip install -r $(REQFILE);					\
-	     : trap removes partial/empty target on failure;		\
-	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     pip freeze | egrep -v '^(wsgiref|distribute|argparse)==' |	\
-	      sort > $@ ;;						\
-	   *)								\
-	     : only pip 1.3.1+ processes --download recursively;	\
-	     rm -rf $(REQS); mkdir $(REQS);				\
-	     echo starting download of requirements from PyPI;		\
-	     pip install --download $(REQS) -r $(REQFILE);		\
-	     : trap removes partial/empty target on failure;		\
-	     trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;		\
-	     (cd $(REQS) && ls *.tar* |					\
-	      sed -e 's/-\([0-9]\)/==\1/' -e 's/\.tar.*$$//') > $@ ;;	\
-	 esac; 
+	pip2 download -d $(REQS) -r $(REQFILE);				\
+	: trap removes partial/empty target on failure;			\
+	trap 'if [ "$$?" != 0 ]; then rm -f $@; fi' 0;			\
+	(cd $(REQS) && ls *.tar* *.whl | sort | sed -e 's/-\([0-9]\)/==\1/' \
+	-e 's/\.tar.*$$//' -e 's/-py2\.py3-none-any\.whl$$//' -e 's/_/-/g') >$@
 
 reqminvers.txt: requirements/*.txt
 	@if grep -q '>[0-9]' $^; then				\
 	   echo "Use '>=' not '>' for requirements"; exit 1;	\
 	 fi
 	@echo "creating $@"
-	@cat $^ | sed -n '/^.[^ ].*=/{s/>=/==/;s/<[^,]*,*//;s/,*$$//;p;}' > $@
+	@cat $^ | sed -n '/^.[^ ].*=/{s/>=/==/;s/<[^,]*,*//;s/,*$$//;p;}' >$@

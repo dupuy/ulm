@@ -1,5 +1,5 @@
-Django>=1.3,<1.6
-South>=0.7
+Django==1.11.28
+South==0.7
 
 # Note: dbus-python is not installable via pip; install manually (or with
 # system packages) - see https://bugs.freedesktop.org/show_bug.cgi?id=55439

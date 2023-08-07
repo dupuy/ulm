@@ -1,5 +1,5 @@
 -r testing.txt
 -r docs.txt
 
-flake8>=2.0
-pylint>=0.25
+flake8==2.0
+pylint==0.25

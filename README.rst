@@ -28,20 +28,20 @@ that is not supported.
 Installation
 ============
 
-Because this package uses python-dbus, which is not built with setup-tools /
-distutils, you will either need to:
+Python 2.7 is required, and you have to update to `pip` version 20.3.4 to
+download packages from PyPI due to deprecation of TLS < 1.2.
 
-1. use ``--system-site-packages`` when you create your virtualenv,
-2. install python-dbus manually in the virtualenv, 
-3. apply the patch provided at
-   https://bugs.freedesktop.org/show_bug.cgi?id=55439 to a local copy of
-   python-dbus, repackage the tarball and install that, or
-4. avoid the use of virtualenv entirely
+The dbus support requires some `apt` packages; for Ubuntu 20.04 they are:
 
-Once you have dealt with that, you can install this package and its (other)
-dependencies with pip::
+- build-essential
+- libpython2-dev
+- libdbus-1-dev
 
-    $ pip install git+git://github.com/dupuy/ulm.git
+These should be installed first.
+
+You can install this package and its dependencies with pip::
+
+    $ pip2 install git+https://github.com/dupuy/ulm.git
 
 You can then run it (for testing purposes) using Django's runserver::
 
@@ -49,7 +49,7 @@ You can then run it (for testing purposes) using Django's runserver::
     Validating models...
 
     0 errors found
-    Django version 1.3.1, using settings 'ulm.settings'
+    Django version 1.11.29, using settings 'ulm.settings'
     Development server is running at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
@@ -57,8 +57,8 @@ You can also clone the Git repository and run it from the source directory::
 
     $ git clone https://github.com/dupuy/ulm.git
     $ cd ulm
-    ulm$ pip install -r requirements/local.txt
-    ulm$ python manage.py runserver
+    ulm$ pip2 install -r requirements/local.txt
+    ulm$ python2 manage.py runserver
     Validating models...
 
 For anything more than that, you will want to run it under a real webserver
@@ -69,12 +69,22 @@ Deployment
 
 If you want to make this a standard service running on the laptop, you will
 probably want to install a webserver with WSGI interface, such as
-`apache2+mod-wsgi`_, gunicorn_, `nginx+gunicorn`_ or `nginx+uWSGI`_.
+`apache2+mod-wsgi`_, `gunicorn`_, `nginx+gunicorn`_ or `nginx+uWSGI`_.
 
 .. _`apache2+mod-wsgi`: https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/
-.. _gunicorn: https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/gunicorn/
+.. _`gunicorn`: https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/gunicorn/
 .. _`nginx+gunicorn`: http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/
 .. _`nginx+uWSGI`: https://uwsgi.readthedocs.org/en/latest/tutorials/Django_and_nginx.html
 
 Eventually, some or all of these may have the necessary configuration files
 provided as part of this repository.
+
+Note
+====
+
+I wrote this as a programming challenge in 2013 when I was applying for a
+position at Lite Elements (a subsidiary of Deutsche Telekom in Berlin).
+It is written using Python 2.7, and as I don't have a laptop or a real
+need for this project, I won't be porting it to Python 3. I have updated it
+to the most recent versions of packages that still support Python 2.7, which
+closed all dependabot security alerts as of 2023-08-12 (~10 years later).

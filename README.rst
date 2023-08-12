@@ -3,6 +3,11 @@ Ubuntu Laptop Monitoring (ulm)
 
 This is a simple Django project that displays battery and WiFi status.
 
+.. note::
+   For complete details, see full documentation at `Read the Docs`_.
+
+.. _`Read the Docs`: https://ulm.readthedocs.io/en/latest/
+
 The project uses DBus to gather information from UPower and NetworkManager -
 while DBus is over-engineered and annoying, it provides a very high-level
 interface (including battery history and time remaining estimation for
@@ -75,9 +80,6 @@ probably want to install a webserver with WSGI interface, such as
 .. _`gunicorn`: https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/gunicorn/
 .. _`nginx+gunicorn`: http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/
 .. _`nginx+uWSGI`: https://uwsgi.readthedocs.org/en/latest/tutorials/Django_and_nginx.html
-
-Eventually, some or all of these may have the necessary configuration files
-provided as part of this repository.
 
 Note
 ====

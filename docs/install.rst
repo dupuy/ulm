@@ -1,10 +1,10 @@
 Installation
 ============
 
-Python 2.7 is required, and you have to update to `pip` version 20.3.4 to
+Python 2.7 is required, and you have to update to ``pip`` version 20.3.4 to
 download packages from PyPI due to deprecation of TLS < 1.2.
 
-The dbus support requires some `apt` packages; for Ubuntu 20.04 they are:
+The dbus support requires some ``apt`` packages; for Ubuntu 20.04 they are:
 
 - build-essential
 - libpython2-dev

@@ -1,10 +1,11 @@
 Ubuntu Laptop Monitoring (ulm)
 ==============================
 
-> NOTE: This project is based on Python 2 and won't be updated to Python 3.
-> As a result, it isn't possible to update various libraries to resolve
-> security issues and vulnerabilities. To stop the noise about those, and
-> to reflect that it won't be updated any further, I have archived it.
+.. warning::
+   This project is based on Python 2 and won't be updated to Python 3.
+   As a result, it isn't possible to update various libraries to resolve
+   security issues and vulnerabilities. To stop the noise about those, and
+   to reflect that it won't be updated any further, I have archived it.
 
 This is a simple Django project that displays battery and WiFi status.
 
